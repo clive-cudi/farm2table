@@ -1,0 +1,1 @@
+export type UserType = "donor" | "org" | "patient";
