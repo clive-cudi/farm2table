@@ -5,6 +5,7 @@ import { User } from "../models/user";
 import path from "path";
 import bcrypt from 'bcryptjs'
 import { v4 as uuid } from "uuid";
+import { SurplusProduct } from "../models/surplusProduct";
 
 const ussd_menu = new UssdMenu();
 
@@ -73,7 +74,7 @@ ussd_menu.startState({
         if (user) {
             ussd_menu.con(withNewLines(`Welcome ${user.username} to Farm2Table login.~Please enter your password: `))
             this.next = {
-                '1': 'overriden',
+                '*': 'login',
                 '2': 'end'
             }
             return
@@ -257,6 +258,227 @@ ussd_menu.state('registerOrganization.confirmPassword', {
             ussd_menu.end('An Error occurred!!')
         }
     }
+});
+
+ussd_menu.state('login', {
+    async run() {
+        const password = ussd_menu.val;
+        const phone = ussd_menu.args.phoneNumber
+
+        console.log(password);
+
+        const targetUser = await User.findOne({phone: phone});
+
+        if (targetUser) {
+            if (await bcrypt.compare(password, targetUser.password)) {
+                // success
+                ussd_menu.con(withNewLines('Welcome to Farm2Table.~Choose Action:~1. Create Surplus Alert~2. Active Surplus Alerts~3. Logout'));
+                this.next = {
+                    '1': 'surplus.create',
+                    '2': 'surplus.all',
+                    '3': 'end'
+                }
+                return;
+            }
+        }
+
+        ussd_menu.con(`Invalid Credentials. Please Try Again`)
+    },
+});
+
+const standard_units = {
+    weight: "kg",
+    volume: "l",
+    length: "m"
+}
+
+interface ICategory {
+    [key: string]: {
+        quantity_variants: {
+            available: string[];
+            variants: {
+                [key: string]: {
+                    quantity: number
+                }
+            };
+        };
+    };
+}
+const categories: ICategory = {
+    "fruits": {
+        quantity_variants: {
+            available: ['weight', 'crates'],
+            variants: {
+                weight: {
+                    quantity: 0
+                },
+                crates: {
+                    quantity: 0
+                }
+            }
+        }
+    },
+    "vegetables": {
+        quantity_variants: {
+            available: ['weight', 'crates'],
+            variants: {
+                weight: {
+                    quantity: 0
+                },
+                crates: {
+                    quantity: 0
+                }
+            }
+        }
+    },
+    "grains": {
+        quantity_variants: {
+            available: ['weight', 'bags'],
+            variants: {
+                weight: {
+                    quantity: 0
+                },
+                bags: {
+                    quantity: 0
+                }
+            }
+        }
+    },
+    "dairy": {
+        quantity_variants: {
+            available: ['weight', 'volume'],
+            variants: {
+                weight: {
+                    quantity: 0
+                },
+                volume: {
+                    quantity: 0
+                }
+            }
+        }
+    },
+    "animals": {
+        quantity_variants: {
+            available: ['number'],
+            variants: {
+                number: {
+                    quantity: 0
+                }
+            }
+        }
+    }
+}
+
+function renderCategories() {
+    let final_string = ``;
+    Object.keys(categories).forEach((key, i) => final_string = `${final_string}~${i + 1}. ${key[0].toUpperCase() + key.substring(1)}`)
+    return final_string;
+}
+
+ussd_menu.state('surplus.create', {
+    run() {
+        ussd_menu.session.set('surplus.create', {});
+        ussd_menu.con(withNewLines(`Select Category: ${renderCategories()}`));
+        const keys = Object.keys(categories);
+        this.next = keys.map((ky, ix) => ({[ix+1]: `surplus.create.${ky}`})).reduce((prev, current) => ({...prev, ...current}))
+    },
+})
+
+ussd_menu.state('surplus.all', {
+    run() {
+        
+    },
+});
+
+Object.keys(categories).forEach((_category_) => {
+    ussd_menu.state(`surplus.create.${_category_}`, {
+        async run() {
+            const prevSessionState = await ussd_menu.session.get('surplus.create') as {};
+            ussd_menu.session.set('surplus.create', {...prevSessionState, category: _category_}).then(() => {
+                const available_quantity_variants = categories[_category_].quantity_variants.available;
+                ussd_menu.con(withNewLines(`Choose Quantity units:~${available_quantity_variants.map((variant, ix) => `~${ix+1}. ${variant}`)}`))
+                // console.log(available_quantity_variants.map((variant_, i) => ({[i+1]: `surplus.create.${_category_}.${variant_}`})).reduce((prev, current) => ({...prev, ...current})));
+                this.next = available_quantity_variants.map((variant_, i) => ({[i+1]: `surplus.create.${_category_}.${variant_}`})).reduce((prev, current) => ({...prev, ...current}))
+            });
+        },
+    })
+});
+
+Object.keys(categories).forEach((_category_) => {
+    const quantity_variants = categories[_category_].quantity_variants.available;
+    quantity_variants.forEach((q_variant) =>{
+        ussd_menu.state(`surplus.create.${_category_}.${q_variant}`, {
+            async run() {
+                const prevSessionState = await ussd_menu.session.get('surplus.create') as {};
+                ussd_menu.session.set('surplus.create', {...prevSessionState, q_variant}).then(() => {
+                    ussd_menu.con(withNewLines(`Enter quantity value:~${q_variant}`))
+                    this.next = {
+                        '*\\d+': `surplus.create.category.q_variant.description`
+                    }
+                })
+            },
+        })
+    } )
+});
+
+ussd_menu.state('surplus.create.category.q_variant.description', {
+    async run() {
+        const q_value = ussd_menu.val;
+        const prevSessionState = await ussd_menu.session.get('surplus.create') as {};
+
+        ussd_menu.session.set('surplus.create', {...prevSessionState, q_value}).then(() => {
+            ussd_menu.con(`Enter product description`);
+            this.next = {
+                '*[a-zA-Z]+': `surplus.create.category.q_variant.description.name`
+            }  
+        })
+    },
+});
+
+ussd_menu.state('surplus.create.category.q_variant.description.name', {
+    async run() {
+        const q_description = ussd_menu.val;
+        const prevSessionState = await ussd_menu.session.get('surplus.create') as {};
+
+        ussd_menu.session.set('surplus.create', {...prevSessionState, q_description}).then(() => {
+            ussd_menu.con(`Enter product name: `);
+            this.next = {
+                '*[a-zA-Z]+': 'surplus.create.category.q_variant.description.name.confirm'
+            }
+        })
+    },
+});
+
+ussd_menu.state('surplus.create.category.q_variant.description.name.confirm', {
+    async run() {
+        const productName = ussd_menu.val;
+        const productData = await ussd_menu.session.get('surplus.create') as {[key: string]: string};
+        const phoneNumber = ussd_menu.args.phoneNumber;
+        const spid = `sp_${uuid()}`;
+
+
+        console.log(productData);
+        const newSurplusProduct = new SurplusProduct({
+            spid,
+            owner: phoneNumber,
+            category: productData.category ?? "other",
+            description: productData.q_description ?? "_",
+            quantity: Number(productData.q_value ?? 0) ?? 0,
+            name: productName ?? "_",
+            q_variant: productData.q_variant ?? "number"
+        });
+
+        newSurplusProduct.save().then((sp_) => {
+            const keys = Object.keys(productData);
+            ussd_menu.end(withNewLines(`Successfully created surplus alert with the following details: ${keys.map((ky, i) => `~${ky}: ${productData[ky]}`)}`));
+            console.log(sp_);
+            return;
+        }).catch((sp_err) => {
+            console.log(sp_err);
+            ussd_menu.end(withNewLines(`Couldn't save your product.~Please try again`))
+            return;
+        })
+    }
 })
 
 ussd_menu.state('overriden', {
@@ -269,6 +491,14 @@ ussd_menu.state('end', {
     run() {
         ussd_menu.end('Ending session. Thank you.')
     }
+});
+
+ussd_menu.state('end.surplus.create', {
+    async run() {
+        const productData = await ussd_menu.session.get('surplus.create') as {[key: string]: string};
+        const keys = Object.keys(productData);
+        ussd_menu.end(withNewLines(`Successfully created surplus alert with the following details: ${keys.map((ky, i) => `~${ky}: ${productData[ky]}`)}`))
+    },
 })
 
 const ussd_controller = async (req: Request, res: Response) => {
