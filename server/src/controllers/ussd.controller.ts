@@ -75,7 +75,6 @@ ussd_menu.startState({
             ussd_menu.con(withNewLines(`Welcome ${user.username} to Farm2Table login.~Please enter your password: `))
             this.next = {
                 '*': 'login',
-                '2': 'end'
             }
             return
         } else {
@@ -272,13 +271,36 @@ ussd_menu.state('login', {
         if (targetUser) {
             if (await bcrypt.compare(password, targetUser.password)) {
                 // success
-                ussd_menu.con(withNewLines('Welcome to Farm2Table.~Choose Action:~1. Create Surplus Alert~2. Active Surplus Alerts~3. Logout'));
-                this.next = {
-                    '1': 'surplus.create',
-                    '2': 'surplus.all',
-                    '3': 'end'
+
+                switch (targetUser.usertype as "donor" | "org" | "agent") {
+                    case "donor":
+                        ussd_menu.con(withNewLines('Welcome to Farm2Table.~Choose Action:~1. Create Surplus Alert~2. Active Surplus Alerts~3. Logout'));
+                        this.next = {
+                            '1': 'surplus.create',
+                            '2': 'surplus.all',
+                            '3': 'end'
+                        }
+                        break;
+                    case "org":
+                        ussd_menu.con(withNewLines('Welcome to Farm2Table.~Choose Action:~1. Subscribe to surplus alert~2. My Surplus Alert Subscriptions~3. Logout'));
+                        this.next = {
+                            '1': 'surplus.create',
+                            '2': 'surplus.all',
+                            '3': 'end'
+                        }
+                        break;
+                    case "agent":
+                        ussd_menu.con(withNewLines('Welcome to Farm2Table.~Choose Action:~1. Check Assigned Contracts~2. My Contracts~3. Logout'));
+                        this.next = {
+                            '1': 'surplus.create',
+                            '2': 'surplus.all',
+                            '3': 'end'
+                        }
+                        break;
+                    default:
+                        ussd_menu.end(withNewLines('We couldn\'t determine your usertype. Please try registering again'));
+                        break;
                 }
-                return;
             }
         }
 
