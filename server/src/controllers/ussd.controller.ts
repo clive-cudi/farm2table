@@ -6,6 +6,7 @@ import path from "path";
 import bcrypt from 'bcryptjs'
 import { v4 as uuid } from "uuid";
 import { SurplusProduct } from "../models/surplusProduct";
+import { SurplusSubscription } from "../models/surplusSubscription";
 
 const ussd_menu = new UssdMenu();
 
@@ -70,7 +71,7 @@ ussd_menu.startState({
     async run() {
         // check if the number or user already exists
         const user = await User.findOne({phone: ussd_menu.args.phoneNumber});
-
+        // console.log(user);
         if (user) {
             ussd_menu.con(withNewLines(`Welcome ${user.username} to Farm2Table login.~Please enter your password: `))
             this.next = {
@@ -79,6 +80,7 @@ ussd_menu.startState({
             return
         } else {
             ussd_menu.con(withNewLines(`Welcome to Farm2Table registration.~1. Choose account type~2. End`));
+            return
         }
     },
     next: {
@@ -272,6 +274,7 @@ ussd_menu.state('login', {
             if (await bcrypt.compare(password, targetUser.password)) {
                 // success
 
+                ussd_menu.session.set('user', {usertype: targetUser.usertype});
                 switch (targetUser.usertype as "donor" | "org" | "agent") {
                     case "donor":
                         ussd_menu.con(withNewLines('Welcome to Farm2Table.~Choose Action:~1. Create Surplus Alert~2. Active Surplus Alerts~3. Logout'));
@@ -284,8 +287,8 @@ ussd_menu.state('login', {
                     case "org":
                         ussd_menu.con(withNewLines('Welcome to Farm2Table.~Choose Action:~1. Subscribe to surplus alert~2. My Surplus Alert Subscriptions~3. Logout'));
                         this.next = {
-                            '1': 'surplus.create',
-                            '2': 'surplus.all',
+                            '1': 'surplus.subscribe',
+                            '2': 'surplus.subscriptions',
                             '3': 'end'
                         }
                         break;
@@ -320,7 +323,8 @@ interface ICategory {
             available: string[];
             variants: {
                 [key: string]: {
-                    quantity: number
+                    quantity: number,
+                    defaultQuantifier: string
                 }
             };
         };
@@ -332,10 +336,12 @@ const categories: ICategory = {
             available: ['weight', 'crates'],
             variants: {
                 weight: {
-                    quantity: 0
+                    quantity: 0,
+                    defaultQuantifier: 'kilograms'
                 },
                 crates: {
-                    quantity: 0
+                    quantity: 0,
+                    defaultQuantifier: 'number'
                 }
             }
         }
@@ -345,10 +351,12 @@ const categories: ICategory = {
             available: ['weight', 'crates'],
             variants: {
                 weight: {
-                    quantity: 0
+                    quantity: 0,
+                    defaultQuantifier: 'kilograms'
                 },
                 crates: {
-                    quantity: 0
+                    quantity: 0,
+                    defaultQuantifier: 'number'
                 }
             }
         }
@@ -358,10 +366,12 @@ const categories: ICategory = {
             available: ['weight', 'bags'],
             variants: {
                 weight: {
-                    quantity: 0
+                    quantity: 0,
+                    defaultQuantifier: 'kilograms'
                 },
                 bags: {
-                    quantity: 0
+                    quantity: 0,
+                    defaultQuantifier: 'number'
                 }
             }
         }
@@ -371,10 +381,12 @@ const categories: ICategory = {
             available: ['weight', 'volume'],
             variants: {
                 weight: {
-                    quantity: 0
+                    quantity: 0,
+                    defaultQuantifier: 'kilograms'
                 },
                 volume: {
-                    quantity: 0
+                    quantity: 0,
+                    defaultQuantifier: 'litres'
                 }
             }
         }
@@ -384,7 +396,8 @@ const categories: ICategory = {
             available: ['number'],
             variants: {
                 number: {
-                    quantity: 0
+                    quantity: 0,
+                    defaultQuantifier: 'number'
                 }
             }
         }
@@ -398,8 +411,8 @@ function renderCategories() {
 }
 
 ussd_menu.state('surplus.create', {
-    run() {
-        ussd_menu.session.set('surplus.create', {});
+    async run() {
+        await ussd_menu.session.set('surplus.create', {});
         ussd_menu.con(withNewLines(`Select Category: ${renderCategories()}`));
         const keys = Object.keys(categories);
         this.next = keys.map((ky, ix) => ({[ix+1]: `surplus.create.${ky}`})).reduce((prev, current) => ({...prev, ...current}))
@@ -410,6 +423,9 @@ ussd_menu.state('surplus.all', {
     run() {
         
     },
+    next: {
+        '*': 'end'
+    }
 });
 
 Object.keys(categories).forEach((_category_) => {
@@ -432,10 +448,11 @@ Object.keys(categories).forEach((_category_) => {
         ussd_menu.state(`surplus.create.${_category_}.${q_variant}`, {
             async run() {
                 const prevSessionState = await ussd_menu.session.get('surplus.create') as {};
+                const user = await ussd_menu.session.get('user') as {usertype: string}
                 ussd_menu.session.set('surplus.create', {...prevSessionState, q_variant}).then(() => {
-                    ussd_menu.con(withNewLines(`Enter quantity value:~${q_variant}`))
-                    this.next = {
-                        '*\\d+': `surplus.create.category.q_variant.description`
+                    ussd_menu.con(withNewLines(user.usertype == 'org' ? `Enter quantity range (${categories[_category_].quantity_variants.variants[q_variant].defaultQuantifier ?? '_'})~Please follow the format: from-to~ e.g 10-20` : `Enter quantity value:~${q_variant} (${categories[_category_].quantity_variants.variants[q_variant].defaultQuantifier ?? '_'})`))
+                    this.next = user?.usertype == "org" ?  {'*\\d+-\\d+': 'surplus.create.category.q_variant.name.org'} : {
+                        '*\\d+': `surplus.create.category.q_variant.name`
                     }
                 })
             },
@@ -443,37 +460,52 @@ Object.keys(categories).forEach((_category_) => {
     } )
 });
 
-ussd_menu.state('surplus.create.category.q_variant.description', {
+ussd_menu.state('surplus.create.category.q_variant.name.description', {
     async run() {
-        const q_value = ussd_menu.val;
+        const q_name = ussd_menu.val;
         const prevSessionState = await ussd_menu.session.get('surplus.create') as {};
+        const user = await ussd_menu.session.get('user') as {usertype: string};
 
-        ussd_menu.session.set('surplus.create', {...prevSessionState, q_value}).then(() => {
-            ussd_menu.con(`Enter product description`);
-            this.next = {
-                '*[a-zA-Z]+': `surplus.create.category.q_variant.description.name`
+        ussd_menu.session.set('surplus.create', {...prevSessionState, q_name}).then(() => {
+            ussd_menu.con(`Enter product description: `);
+            this.next = user.usertype == "org" ? {'*[a-zA-Z]+': `surplus.create.category.q_variant.name.description.confirm.org`} : {
+                '*[a-zA-Z]+': `surplus.create.category.q_variant.name.description.confirm`
             }  
         })
     },
 });
 
-ussd_menu.state('surplus.create.category.q_variant.description.name', {
+ussd_menu.state('surplus.create.category.q_variant.name', {
     async run() {
-        const q_description = ussd_menu.val;
+        const q_value = ussd_menu.val;
         const prevSessionState = await ussd_menu.session.get('surplus.create') as {};
 
-        ussd_menu.session.set('surplus.create', {...prevSessionState, q_description}).then(() => {
+        ussd_menu.session.set('surplus.create', {...prevSessionState, q_value}).then(() => {
             ussd_menu.con(`Enter product name: `);
             this.next = {
-                '*[a-zA-Z]+': 'surplus.create.category.q_variant.description.name.confirm'
+                '*[a-zA-Z]+': 'surplus.create.category.q_variant.name.description'
             }
         })
     },
 });
 
-ussd_menu.state('surplus.create.category.q_variant.description.name.confirm', {
+ussd_menu.state('surplus.create.category.q_variant.name.org', {
     async run() {
-        const productName = ussd_menu.val;
+        const q_value = ussd_menu.val;
+        const prevSessionState = await ussd_menu.session.get('surplus.create') as {};
+
+        ussd_menu.session.set('surplus.create', {...prevSessionState, q_value}).then(() => {
+            ussd_menu.con(`Enter ideal product name: `);
+            this.next = {
+                '*[a-zA-Z]+': 'surplus.create.category.q_variant.name.description'
+            }
+        })
+    },
+});
+
+ussd_menu.state('surplus.create.category.q_variant.name.description.confirm', {
+    async run() {
+        const productDescription = ussd_menu.val;
         const productData = await ussd_menu.session.get('surplus.create') as {[key: string]: string};
         const phoneNumber = ussd_menu.args.phoneNumber;
         const spid = `sp_${uuid()}`;
@@ -484,9 +516,9 @@ ussd_menu.state('surplus.create.category.q_variant.description.name.confirm', {
             spid,
             owner: phoneNumber,
             category: productData.category ?? "other",
-            description: productData.q_description ?? "_",
+            description: productDescription ?? "_",
             quantity: Number(productData.q_value ?? 0) ?? 0,
-            name: productName ?? "_",
+            name: productData.q_name ?? "_",
             q_variant: productData.q_variant ?? "number"
         });
 
@@ -501,7 +533,79 @@ ussd_menu.state('surplus.create.category.q_variant.description.name.confirm', {
             return;
         })
     }
-})
+});
+
+/*
+*********ORGANIZATION*************
+**/
+
+ussd_menu.state('surplus.subscribe', {
+    async run() {
+        // ussd_menu.end("Creating surplus subscription.");
+        await ussd_menu.session.set('surplus.subscribe', {});
+        ussd_menu.con(withNewLines(`Select Category: ${renderCategories()}`));
+        const keys = Object.keys(categories);
+        this.next = keys.map((ky, ix) => ({[ix+1]: `surplus.create.${ky}`})).reduce((prev, current) => ({...prev, ...current}))
+    },
+});
+
+ussd_menu.state('surplus.create.category.q_variant.name.description.confirm.org', {
+    async run() {
+        const productDescription = ussd_menu.val;
+        const productData = await ussd_menu.session.get('surplus.create') as {[key: string]: string};
+        const phoneNumber = ussd_menu.args.phoneNumber;
+        const ssid = `ss_${uuid()}`;
+        const q_ranges = productData.q_value.split('-').map((val) => Number(val)).sort((a, b) => a-b);
+
+        console.log(q_ranges);
+
+
+        console.log(productData);
+        // const newSurplusProduct = new SurplusProduct({
+        //     spid,
+        //     owner: phoneNumber,
+        //     category: productData.category ?? "other",
+        //     description: productDescription ?? "_",
+        //     quantity: Number(productData.q_value ?? 0) ?? 0,
+        //     name: productData.q_name ?? "_",
+        //     q_variant: productData.q_variant ?? "number"
+        // });
+
+        const newSurplusSubscription = new SurplusSubscription({
+            ssid,
+            source: phoneNumber,
+            category: productData.category ?? "other",
+            description: productDescription ?? "_",
+            name: productData.q_name ?? "_",
+            q_variant: productData.q_variant ?? "number",
+            q_range: {
+                from: q_ranges[0] ?? 0,
+                to: q_ranges[1] ?? 0
+            }
+        });
+
+        // newSurplusProduct.save().then((sp_) => {
+        //     const keys = Object.keys(productData);
+        //     ussd_menu.end(withNewLines(`Successfully created surplus alert with the following details: ${keys.map((ky, i) => `~${ky}: ${productData[ky]}`)}`));
+        //     console.log(sp_);
+        //     return;
+        // }).catch((sp_err) => {
+        //     console.log(sp_err);
+        //     ussd_menu.end(withNewLines(`Couldn't save your product.~Please try again`))
+        //     return;
+        // })
+        newSurplusSubscription.save().then((ss_) => {
+            const keys = Object.keys(productData);
+            ussd_menu.end(withNewLines(`Successfully subscribed to surplus alert with the following details: ${keys.map((ky, i) => `~${ky}: ${productData[ky]}`)}`));
+            console.log(ss_);
+            return;
+        }).catch((ss__err) => {
+            console.log(ss__err);
+            ussd_menu.end(withNewLines(`Couldn't register your subscription.~Please try again`))
+            return;
+        })
+    }
+});
 
 ussd_menu.state('overriden', {
     run() {
