@@ -67,12 +67,13 @@ export function camelize(str: string) {
 
 
 // ****************************** TEST ****************************************
-// readFromJSONObjectFile('./session.json').then((data) => {
-
-//     const initialData = isJsonString(data) ? JSON.parse(data) : [];
-//     writeToJSONFile('./session.json', {...initialData, [randomUUID()]: {id: "jhaka"}}, true).then((success) => {
-//         console.log(success);
-//     }).catch((e) => {console.log(e)})
-// }).catch((err) => {
-//     console.log('[ERROR]', err);
-// })
+readFromJSONObjectFile('./sample.json').then((data) => {
+    // console.log(JSON.parse(data));
+    const initialData = isJsonString(data) ? JSON.parse(data) : [];
+    // console.log(Object.keys(initialData).map((ky) => ({label: ky, value: ky})));
+    writeToJSONFile('./out.json', Object.keys(initialData).map((ky) => ({label: ky, value: ky})), true).then((success) => {
+        console.log(success);
+    }).catch((e) => {console.log(e)})
+}).catch((err) => {
+    console.log('[ERROR]', err);
+})

@@ -1,0 +1,418 @@
+[
+    {
+        "label": "Albumin",
+        "value": "Albumin"
+    },
+    {
+        "label": "Alkaline Phosphatase (U/L)",
+        "value": "Alkaline Phosphatase (U/L)"
+    },
+    {
+        "label": "ALT [Alanine Transaminase] (U/L)",
+        "value": "ALT [Alanine Transaminase] (U/L)"
+    },
+    {
+        "label": "AST [Aspartate Aminotransferase] (U/L)",
+        "value": "AST [Aspartate Aminotransferase] (U/L)"
+    },
+    {
+        "label": "Total Bilirubin (mg/dL)",
+        "value": "Total Bilirubin (mg/dL)"
+    },
+    {
+        "label": "Blood Albumin",
+        "value": "Blood Albumin"
+    },
+    {
+        "label": "Blood Creatinine (mg/dL)",
+        "value": "Blood Creatinine (mg/dL)"
+    },
+    {
+        "label": "Blood Pressure - BPM (beats/min)",
+        "value": "Blood Pressure - BPM (beats/min)"
+    },
+    {
+        "label": "Blood Pressure - Systolic",
+        "value": "Blood Pressure - Systolic"
+    },
+    {
+        "label": "Blood Pressure - Diastolic",
+        "value": "Blood Pressure - Diastolic"
+    },
+    {
+        "label": "Blood Pressure - Max Inflation",
+        "value": "Blood Pressure - Max Inflation"
+    },
+    {
+        "label": "Total Calcium (mg/dL)",
+        "value": "Total Calcium (mg/dL)"
+    },
+    {
+        "label": "VO2 Max",
+        "value": "VO2 Max"
+    },
+    {
+        "label": "Cholesterol - HDL (mg/dL)",
+        "value": "Cholesterol - HDL (mg/dL)"
+    },
+    {
+        "label": "Cholesterol - LDL (mg/dL)",
+        "value": "Cholesterol - LDL (mg/dL)"
+    },
+    {
+        "label": "Cholesterol - Total (mg/dL)",
+        "value": "Cholesterol - Total (mg/dL)"
+    },
+    {
+        "label": "C Reactive Protein (mg/dL)",
+        "value": "C Reactive Protein (mg/dL)"
+    },
+    {
+        "label": "High Sensitivity C Reactive Protein",
+        "value": "High Sensitivity C Reactive Protein"
+    },
+    {
+        "label": "Cystatin C (mg/L)",
+        "value": "Cystatin C (mg/L)"
+    },
+    {
+        "label": "Fasting Glucose",
+        "value": "Fasting Glucose"
+    },
+    {
+        "label": "Fasting Insulin",
+        "value": "Fasting Insulin"
+    },
+    {
+        "label": "Glycohemoglobin A1c (%)",
+        "value": "Glycohemoglobin A1c (%)"
+    },
+    {
+        "label": "Hematocrit (%)",
+        "value": "Hematocrit (%)"
+    },
+    {
+        "label": "Homocysteine (umol/L)",
+        "value": "Homocysteine (umol/L)"
+    },
+    {
+        "label": "Triglycerides (mg/dL)",
+        "value": "Triglycerides (mg/dL)"
+    },
+    {
+        "label": "Mean Platelet Count (1000 cells/uL)",
+        "value": "Mean Platelet Count (1000 cells/uL)"
+    },
+    {
+        "label": "Blood Urea Nitrogen (mg/dL)",
+        "value": "Blood Urea Nitrogen (mg/dL)"
+    },
+    {
+        "label": "Follicle Stimulating Hormone (IU/L)",
+        "value": "Follicle Stimulating Hormone (IU/L)"
+    },
+    {
+        "label": "Red Cell Distribution Width (%)",
+        "value": "Red Cell Distribution Width (%)"
+    },
+    {
+        "label": "Selenium",
+        "value": "Selenium"
+    },
+    {
+        "label": "Sex Hormones - Average Daily Live Gain",
+        "value": "Sex Hormones - Average Daily Live Gain"
+    },
+    {
+        "label": "Sex Hormones - Estradiol [Women] (pg/mL)",
+        "value": "Sex Hormones - Estradiol [Women] (pg/mL)"
+    },
+    {
+        "label": "Sex Hormones - Sex Hormone Binding Globulin",
+        "value": "Sex Hormones - Sex Hormone Binding Globulin"
+    },
+    {
+        "label": "Sex Hormones - Testosterone [Men] (ng/mL)",
+        "value": "Sex Hormones - Testosterone [Men] (ng/mL)"
+    },
+    {
+        "label": "Iron (ug/dL)",
+        "value": "Iron (ug/dL)"
+    },
+    {
+        "label": "Uric acid (mg/dL)",
+        "value": "Uric acid (mg/dL)"
+    },
+    {
+        "label": "Fibrinogen (mg/dL)",
+        "value": "Fibrinogen (mg/dL)"
+    },
+    {
+        "label": "Apolipoprotein B (mg/dL)",
+        "value": "Apolipoprotein B (mg/dL)"
+    },
+    {
+        "label": "Klotho",
+        "value": "Klotho"
+    },
+    {
+        "label": "Ferritin (ug/L)",
+        "value": "Ferritin (ug/L)"
+    },
+    {
+        "label": "Grip Strength (Kg)",
+        "value": "Grip Strength (Kg)"
+    },
+    {
+        "label": "Blood Cadmium (ug/L)",
+        "value": "Blood Cadmium (ug/L)"
+    },
+    {
+        "label": "Blood Chromium (ug/L)",
+        "value": "Blood Chromium (ug/L)"
+    },
+    {
+        "label": "Blood Cobalt (ug/L)",
+        "value": "Blood Cobalt (ug/L)"
+    },
+    {
+        "label": "Blood Ethylene Oxide (pmol/g Hg)",
+        "value": "Blood Ethylene Oxide (pmol/g Hg)"
+    },
+    {
+        "label": "Blood Lead (ug/dL)",
+        "value": "Blood Lead (ug/dL)"
+    },
+    {
+        "label": "Blood Manganese (ug/L)",
+        "value": "Blood Manganese (ug/L)"
+    },
+    {
+        "label": "Blood Mercury - Ethyl (ug/L)",
+        "value": "Blood Mercury - Ethyl (ug/L)"
+    },
+    {
+        "label": "Blood Mercury - Inorganic (ug/L)",
+        "value": "Blood Mercury - Inorganic (ug/L)"
+    },
+    {
+        "label": "Blood Mercury - Methyl (ug/L)",
+        "value": "Blood Mercury - Methyl (ug/L)"
+    },
+    {
+        "label": "Blood Mercury - Total (ug/L)",
+        "value": "Blood Mercury - Total (ug/L)"
+    },
+    {
+        "label": "Blood Selenium (ug/L)",
+        "value": "Blood Selenium (ug/L)"
+    },
+    {
+        "label": "Diastolic Blood Pressure 2017",
+        "value": "Diastolic Blood Pressure 2017"
+    },
+    {
+        "label": "Blood Pressure Max Inflation 2017",
+        "value": "Blood Pressure Max Inflation 2017"
+    },
+    {
+        "label": "Blood Pressure Pulse 2017",
+        "value": "Blood Pressure Pulse 2017"
+    },
+    {
+        "label": "Systolic Blood Pressure 2017",
+        "value": "Systolic Blood Pressure 2017"
+    },
+    {
+        "label": "HDL cholesterol 2017",
+        "value": "HDL cholesterol 2017"
+    },
+    {
+        "label": "LDL Cholesterol 2017",
+        "value": "LDL Cholesterol 2017"
+    },
+    {
+        "label": "Total Cholesterol 2017",
+        "value": "Total Cholesterol 2017"
+    },
+    {
+        "label": "Triglycerides 2017",
+        "value": "Triglycerides 2017"
+    },
+    {
+        "label": "Ferritin 2017",
+        "value": "Ferritin 2017"
+    },
+    {
+        "label": "Folate RBC 2017",
+        "value": "Folate RBC 2017"
+    },
+    {
+        "label": "Glycohemoglobin 2017",
+        "value": "Glycohemoglobin 2017"
+    },
+    {
+        "label": "HS C Reactive Protein 2017",
+        "value": "HS C Reactive Protein 2017"
+    },
+    {
+        "label": "Liver Median Stiffness 2017",
+        "value": "Liver Median Stiffness 2017"
+    },
+    {
+        "label": "Plasma Fasting Glucose 2017",
+        "value": "Plasma Fasting Glucose 2017"
+    },
+    {
+        "label": "Standard Biochemistry Panel - ALP 2017",
+        "value": "Standard Biochemistry Panel - ALP 2017"
+    },
+    {
+        "label": "Standard Biochemistry Panel - ALT 2017",
+        "value": "Standard Biochemistry Panel - ALT 2017"
+    },
+    {
+        "label": "Standard Biochemistry Panel - AST 2017",
+        "value": "Standard Biochemistry Panel - AST 2017"
+    },
+    {
+        "label": "Standard Biochemistry Panel - Bicarbonate 2017",
+        "value": "Standard Biochemistry Panel - Bicarbonate 2017"
+    },
+    {
+        "label": "Standard Biochemistry Panel - Blood Urea Nitrogen 2017",
+        "value": "Standard Biochemistry Panel - Blood Urea Nitrogen 2017"
+    },
+    {
+        "label": "Standard Biochemistry Panel - Calcium 2017",
+        "value": "Standard Biochemistry Panel - Calcium 2017"
+    },
+    {
+        "label": "Standard Biochemistry Panel - Chloride 2017",
+        "value": "Standard Biochemistry Panel - Chloride 2017"
+    },
+    {
+        "label": "Standard Biochemistry Panel - CPK 2017",
+        "value": "Standard Biochemistry Panel - CPK 2017"
+    },
+    {
+        "label": "Standard Biochemistry Panel - Creatinine 2017",
+        "value": "Standard Biochemistry Panel - Creatinine 2017"
+    },
+    {
+        "label": "Standard Biochemistry Panel - GGT 2017",
+        "value": "Standard Biochemistry Panel - GGT 2017"
+    },
+    {
+        "label": "Standard Biochemistry Panel - Globulin 2017",
+        "value": "Standard Biochemistry Panel - Globulin 2017"
+    },
+    {
+        "label": "Standard Biochemistry Panel - LDH 2017",
+        "value": "Standard Biochemistry Panel - LDH 2017"
+    },
+    {
+        "label": "Standard Biochemistry Panel - Osmolality 2017",
+        "value": "Standard Biochemistry Panel - Osmolality 2017"
+    },
+    {
+        "label": "Standard Biochemistry Panel - Phosphorous 2017",
+        "value": "Standard Biochemistry Panel - Phosphorous 2017"
+    },
+    {
+        "label": "Standard Biochemistry Panel - Potassium 2017",
+        "value": "Standard Biochemistry Panel - Potassium 2017"
+    },
+    {
+        "label": "Standard Biochemistry Panel - Serum Albumin 2017",
+        "value": "Standard Biochemistry Panel - Serum Albumin 2017"
+    },
+    {
+        "label": "Standard Biochemistry Panel - Serum Glucose 2017",
+        "value": "Standard Biochemistry Panel - Serum Glucose 2017"
+    },
+    {
+        "label": "Standard Biochemistry Panel - Serum Iron 2017",
+        "value": "Standard Biochemistry Panel - Serum Iron 2017"
+    },
+    {
+        "label": "Standard Biochemistry Panel - Serum Triglycerides 2017",
+        "value": "Standard Biochemistry Panel - Serum Triglycerides 2017"
+    },
+    {
+        "label": "Standard Biochemistry Panel - Sodium 2017",
+        "value": "Standard Biochemistry Panel - Sodium 2017"
+    },
+    {
+        "label": "Standard Biochemistry Panel - Total Bilirubin 2017",
+        "value": "Standard Biochemistry Panel - Total Bilirubin 2017"
+    },
+    {
+        "label": "Standard Biochemistry Panel - Total Protein 2017",
+        "value": "Standard Biochemistry Panel - Total Protein 2017"
+    },
+    {
+        "label": "Standard Biochemistry Panel - Uric Acid 2017",
+        "value": "Standard Biochemistry Panel - Uric Acid 2017"
+    },
+    {
+        "label": "Serum Cholesterol 2017",
+        "value": "Serum Cholesterol 2017"
+    },
+    {
+        "label": "Serum Cotinine 2017",
+        "value": "Serum Cotinine 2017"
+    },
+    {
+        "label": "Serum Total Folate 2017",
+        "value": "Serum Total Folate 2017"
+    },
+    {
+        "label": "Serum Folic Acid 2017",
+        "value": "Serum Folic Acid 2017"
+    },
+    {
+        "label": "Serum Folinic Acid 2017",
+        "value": "Serum Folinic Acid 2017"
+    },
+    {
+        "label": "Serum Hydroxycotinine 2017",
+        "value": "Serum Hydroxycotinine 2017"
+    },
+    {
+        "label": "Serum Insulin 2017",
+        "value": "Serum Insulin 2017"
+    },
+    {
+        "label": "Serum Iron 2017",
+        "value": "Serum Iron 2017"
+    },
+    {
+        "label": "Serum Levemefolic Acid 2017",
+        "value": "Serum Levemefolic Acid 2017"
+    },
+    {
+        "label": "Serum Mefox Oxidation 2017",
+        "value": "Serum Mefox Oxidation 2017"
+    },
+    {
+        "label": "Serum Methenyl Tetrahydrofolate 2017",
+        "value": "Serum Methenyl Tetrahydrofolate 2017"
+    },
+    {
+        "label": "Serum Tetrahydrofolate 2017",
+        "value": "Serum Tetrahydrofolate 2017"
+    },
+    {
+        "label": "Serum Total Iron Binding 2017",
+        "value": "Serum Total Iron Binding 2017"
+    },
+    {
+        "label": "Serum Transferrin Saturation 2017",
+        "value": "Serum Transferrin Saturation 2017"
+    },
+    {
+        "label": "Serum Unsaturated Iron Binding 2017",
+        "value": "Serum Unsaturated Iron Binding 2017"
+    }
+]

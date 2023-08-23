@@ -1,0 +1,2217 @@
+{
+    "Albumin": {
+      "ylim": 300,
+      "rangesource": "University of Rochester",
+      "ranges": {
+        "green": [
+          0,
+          30
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+    "Alkaline Phosphatase (U/L)": {
+      "ylim": 400,
+      "rangesource": "Mount Sinai",
+      "ranges": {
+        "green": [
+          44,
+          147
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+    "ALT [Alanine Transaminase] (U/L)": {
+      "ylim": 100,
+      "rangesource": "Cleveland Clinic",
+      "ranges": {
+        "green": [
+          7,
+          56
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+    "AST [Aspartate Aminotransferase] (U/L)": {
+      "ylim": 100,
+      "rangesource": "UCSF",
+      "ranges": {
+        "green": [
+          8,
+          33
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+    "Total Bilirubin (mg/dL)": {
+      "ylim": 3,
+      "rangesource": "Mount Sinai",
+      "ranges": {
+        "green": [
+          0.1,
+          1.2
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+    "Blood Albumin": {
+      "ylim": 8,
+      "rangesource": "University of Rochester",
+      "ranges": {
+        "green": [
+          3.4,
+          5.4
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+    "Blood Creatinine (mg/dL)": {
+      "ylim": 3,
+      "rangesource": "Mount Sinai Male",
+      "ranges": {
+        "green": [
+          0.7,
+          1.3
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+    "Blood Pressure - BPM (beats/min)": {
+      "ylim": 140,
+      "rangesource": "none",
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+    "Blood Pressure - Systolic": {
+      "ylim": 250,
+      "rangesource": "American Heart Association",
+      "ranges": {
+        "green": [
+          0,
+          120
+        ],
+        "yellow": [
+          120,
+          130
+        ],
+        "orange": [
+          130,
+          140
+        ],
+        "red": [
+          140,
+          250
+        ]
+      }
+    },
+    "Blood Pressure - Diastolic": {
+      "ylim": 150,
+      "rangesource": "American Heart Association",
+      "ranges": {
+        "green": [
+          0,
+          80
+        ],
+        "yellow": [
+          80,
+          90
+        ],
+        "orange": [
+          90,
+          120
+        ],
+        "red": [
+          120,
+          150
+        ]
+      }
+    },
+    "Blood Pressure - Max Inflation": {
+      "ylim": 300,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+    "Total Calcium (mg/dL)": {
+      "ylim": 15,
+      "rangesource": "Cleveland Clinic",
+      "ranges": {
+        "green": [
+          8.5,
+          10.2
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+    "VO2 Max": {
+      "ylim": 150,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+    "Cholesterol - HDL (mg/dL)": {
+      "ylim": 150,
+      "rangesource": "Cleveland Clinic Male",
+      "ranges": {
+        "green": [
+          45,
+          70
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+    "Cholesterol - LDL (mg/dL)": {
+      "ylim": 300,
+      "rangesource": "Johns Hopkins",
+      "ranges": {
+        "green": [
+          0,
+          100
+        ],
+        "yellow": [
+          100,
+          130
+        ],
+        "orange": [
+          130,
+          160
+        ],
+        "red": [
+          160,
+          300
+        ]
+      }
+    },
+    "Cholesterol - Total (mg/dL)": {
+      "ylim": 400,
+      "rangesource": "Johns Hopkins",
+      "ranges": {
+        "green": [
+          0,
+          200
+        ],
+        "yellow": [
+          200,
+          240
+        ],
+        "orange": [
+          240,
+          400
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+    "C Reactive Protein (mg/dL)": {
+      "ylim": 5,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+    "High Sensitivity C Reactive Protein": {
+      "ylim": 50,
+      "rangesource": "Cleveland Heart Lab",
+      "ranges": {
+        "green": [
+          0,
+          1
+        ],
+        "yellow": [
+          1,
+          3
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          3,
+          50
+        ]
+      }
+    },
+    "Cystatin C (mg/L)": {
+      "ylim": 3,
+      "rangesource": "SelfDecode",
+      "ranges": {
+        "green": [
+          0.62,
+          1.15
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+    "Fasting Glucose": {
+      "ylim": 250,
+      "rangesource": "Mount Sinai",
+      "ranges": {
+        "green": [
+          70,
+          100
+        ],
+        "yellow": [
+          100,
+          125
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          126,
+          250
+        ]
+      }
+    },
+    "Fasting Insulin": {
+      "ylim": 100,
+      "rangesource": "none",
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+    "Glycohemoglobin A1c (%)": {
+      "ylim": 15,
+      "rangesource": "Cleveland Clinic",
+      "ranges": {
+        "green": [
+          0,
+          5.7
+        ],
+        "yellow": [
+          5.7,
+          6.4
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          6.4,
+          15
+        ]
+      }
+    },
+    "Hematocrit (%)": {
+      "ylim": 60,
+      "rangesource": "Cleveland Clinic Male",
+      "ranges": {
+        "green": [
+          41,
+          50
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+    "Homocysteine (umol/L)": {
+      "ylim": 50,
+      "rangesource": "University of Rochester",
+      "ranges": {
+        "green": [
+          0,
+          15
+        ],
+        "yellow": [
+          15,
+          30
+        ],
+        "orange": [
+          30,
+          50
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+    "Triglycerides (mg/dL)": {
+      "ylim": 500,
+      "rangesource": "Mayo Clinic",
+      "ranges": {
+        "green": [
+          0,
+          150
+        ],
+        "yellow": [
+          150,
+          199
+        ],
+        "orange": [
+          200,
+          499
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+    "Mean Platelet Count (1000 cells/uL)": {
+      "ylim": 15,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+    "Blood Urea Nitrogen (mg/dL)": {
+      "ylim": 50,
+      "rangesource": "Mayo Clinic",
+      "ranges": {
+        "green": [
+          6,
+          24
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+    "Follicle Stimulating Hormone (IU/L)": {
+      "ylim": 200,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+    "Red Cell Distribution Width (%)": {
+      "ylim": 30,
+      "rangesource": "Cleveland Clinic",
+      "ranges": {
+        "green": [
+          12,
+          15
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+    "Selenium": {
+      "ylim": 200,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+    "Sex Hormones - Average Daily Live Gain": {
+      "ylim": 30,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+    "Sex Hormones - Estradiol [Women] (pg/mL)": {
+      "ylim": 400,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+    "Sex Hormones - Sex Hormone Binding Globulin": {
+      "ylim": 300,
+      "rangesource": "Healthline Male",
+      "ranges": {
+        "green": [
+          10,
+          57
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+    "Sex Hormones - Testosterone [Men] (ng/mL)": {
+      "ylim": 1400,
+      "rangesource": "Mount Sinai",
+      "ranges": {
+        "green": [
+          300,
+          1000
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+    "Iron (ug/dL)": {
+      "ylim": 300,
+      "rangesource": "Mount Sinai",
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+    "Uric acid (mg/dL)": {
+      "ylim": 15,
+      "rangesource": "UCSF",
+      "ranges": {
+        "green": [
+          3.5,
+          7.2
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+    "Fibrinogen (mg/dL)": {
+      "ylim": 800,
+      "rangesource": "UCSF",
+      "ranges": {
+        "green": [
+          200,
+          400
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+    "Apolipoprotein B (mg/dL)": {
+      "ylim": 300,
+      "rangesource": "Cleveland Clinic Male",
+      "ranges": {
+        "green": [
+          66,
+          133
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+    "Klotho": {
+      "ylim": 2000,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+    "Ferritin (ug/L)": {
+      "ylim": 300,
+      "rangesource": "Mayo Clinic Male",
+      "ranges": {
+        "green": [
+          24,
+          336
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+    "Grip Strength (Kg)": {
+      "ylim": 100,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+      "Blood Cadmium (ug/L)": {
+      "ylim": 4,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+      "Blood Chromium (ug/L)": {
+      "ylim": 5,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+      "Blood Cobalt (ug/L)": {
+      "ylim": 2,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+      "Blood Ethylene Oxide (pmol/g Hg)": {
+      "ylim": 300,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+      "Blood Lead (ug/dL)": {
+      "ylim": 10,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+      "Blood Manganese (ug/L)": {
+      "ylim": 30,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+      "Blood Mercury - Ethyl (ug/L)": {
+      "ylim": 0.2,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+      "Blood Mercury - Inorganic (ug/L)": {
+      "ylim": 1.5,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+      "Blood Mercury - Methyl (ug/L)": {
+      "ylim": 15,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+      "Blood Mercury - Total (ug/L)": {
+      "ylim": 20,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+      "Blood Selenium (ug/L)": {
+      "ylim": 300,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+      "Diastolic Blood Pressure 2017": {
+      "ylim": 150,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+      "Blood Pressure Max Inflation 2017": {
+      "ylim": 250,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+      "Blood Pressure Pulse 2017": {
+      "ylim": 150,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+      "Systolic Blood Pressure 2017": {
+      "ylim": 250,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+      "HDL cholesterol 2017": {
+      "ylim": 150,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+      "LDL Cholesterol 2017": {
+      "ylim": 250,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+      "Total Cholesterol 2017": {
+      "ylim": 350,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+      "Triglycerides 2017": {
+      "ylim": 300,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+      "Ferritin 2017": {
+      "ylim": 500,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+      "Folate RBC 2017": {
+      "ylim": 900,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+      "Glycohemoglobin 2017": {
+      "ylim": 15,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+      "HS C Reactive Protein 2017": {
+      "ylim": 20,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+      "Liver Median Stiffness 2017": {
+      "ylim": 50,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+      },
+      "Plasma Fasting Glucose 2017": {
+      "ylim": 200,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+      "Standard Biochemistry Panel - ALP 2017": {
+      "ylim": 300,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+      "Standard Biochemistry Panel - ALT 2017": {
+      "ylim": 150,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+      "Standard Biochemistry Panel - AST 2017": {
+      "ylim": 150,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+      "Standard Biochemistry Panel - Bicarbonate 2017": {
+      "ylim": 40,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+      "Standard Biochemistry Panel - Blood Urea Nitrogen 2017": {
+      "ylim": 40,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+      "Standard Biochemistry Panel - Calcium 2017": {
+      "ylim": 13,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+      "Standard Biochemistry Panel - Chloride 2017": {
+      "ylim": 125,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+      "Standard Biochemistry Panel - CPK 2017": {
+      "ylim": 600,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+      "Standard Biochemistry Panel - Creatinine 2017": {
+      "ylim": 3,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+      "Standard Biochemistry Panel - GGT 2017": {
+      "ylim": 100,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+      "Standard Biochemistry Panel - Globulin 2017": {
+      "ylim": 6,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+      "Standard Biochemistry Panel - LDH 2017": {
+      "ylim": 350,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+      "Standard Biochemistry Panel - Osmolality 2017": {
+      "ylim": 350,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+      "Standard Biochemistry Panel - Phosphorous 2017": {
+      "ylim": 8,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+      "Standard Biochemistry Panel - Potassium 2017": {
+      "ylim": 6,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+      "Standard Biochemistry Panel - Serum Albumin 2017": {
+      "ylim": 6,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+      "Standard Biochemistry Panel - Serum Glucose 2017": {
+      "ylim": 200,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+      "Standard Biochemistry Panel - Serum Iron 2017": {
+      "ylim": 300,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+      "Standard Biochemistry Panel - Serum Triglycerides 2017": {
+      "ylim": 300,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+      "Standard Biochemistry Panel - Sodium 2017": {
+      "ylim": 175,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+      "Standard Biochemistry Panel - Total Bilirubin 2017": {
+      "ylim": 2,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+      "Standard Biochemistry Panel - Total Protein 2017": {
+      "ylim": 10,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+      "Standard Biochemistry Panel - Uric Acid 2017": {
+      "ylim": 15,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+      "Serum Cholesterol 2017": {
+      "ylim": 300,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+      "Serum Cotinine 2017": {
+      "ylim": 200,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+      "Serum Total Folate 2017": {
+      "ylim": 200,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+      "Serum Folic Acid 2017": {
+      "ylim": 10,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+      "Serum Folinic Acid 2017": {
+      "ylim": 2,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+      "Serum Hydroxycotinine 2017": {
+      "ylim": 200,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+      "Serum Insulin 2017": {
+      "ylim": 100,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+      "Serum Iron 2017": {
+      "ylim": 200,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+      "Serum Levemefolic Acid 2017": {
+      "ylim": 150,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+      "Serum Mefox Oxidation 2017": {
+      "ylim": 10,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+      "Serum Methenyl Tetrahydrofolate 2017": {
+      "ylim": 2,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+      "Serum Tetrahydrofolate 2017": {
+      "ylim": 6,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+      "Serum Total Iron Binding 2017": {
+      "ylim": 600,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+      "Serum Transferrin Saturation 2017": {
+      "ylim": 100,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    },
+      "Serum Unsaturated Iron Binding 2017": {
+      "ylim": 600,
+      "ranges": {
+        "green": [
+          0,
+          0
+        ],
+        "yellow": [
+          0,
+          0
+        ],
+        "orange": [
+          0,
+          0
+        ],
+        "red": [
+          0,
+          0
+        ]
+      }
+    }
+  }
