@@ -7,6 +7,8 @@ import bcrypt from 'bcryptjs'
 import { v4 as uuid } from "uuid";
 import { SurplusProduct } from "../models/surplusProduct";
 import { SurplusSubscription } from "../models/surplusSubscription";
+import {messagesChannel} from "../utils/amqp";
+import {Buffer} from "buffer";
 
 const ussd_menu = new UssdMenu();
 
@@ -522,11 +524,26 @@ ussd_menu.state('surplus.create.category.q_variant.name.description.confirm', {
             q_variant: productData.q_variant ?? "number"
         });
 
-        newSurplusProduct.save().then((sp_) => {
-            const keys = Object.keys(productData);
-            ussd_menu.end(withNewLines(`Successfully created surplus alert with the following details: ${keys.map((ky, i) => `~${ky}: ${productData[ky]}`)}`));
-            console.log(sp_);
-            return;
+        newSurplusProduct.save().then(async (sp_) => {
+            try {
+                const keys = Object.keys(productData);
+                ussd_menu.end(withNewLines(`Successfully created surplus alert with the following details: ${keys.map((ky, i) => `~${ky}: ${productData[ky]}`)}`));
+                const surplusProduct = JSON.stringify(sp_);
+                const channel = await messagesChannel();
+                const QUEUE = "messages";
+
+                channel.assertQueue(QUEUE, {
+                    durable: false
+                });
+
+                channel.sendToQueue(QUEUE, Buffer.from(surplusProduct));
+
+                console.log(" [x] Sent %s", surplusProduct);
+
+                return;
+            } catch (e) {
+                throw e;
+            }
         }).catch((sp_err) => {
             console.log(sp_err);
             ussd_menu.end(withNewLines(`Couldn't save your product.~Please try again`))

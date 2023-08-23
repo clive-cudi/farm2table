@@ -40,6 +40,9 @@ dependencies:
     version: 9.0.0
 
 devDependencies:
+  '@types/amqplib':
+    specifier: ^0.10.1
+    version: 0.10.1
   '@types/bcryptjs':
     specifier: ^2.4.2
     version: 2.4.2
@@ -118,6 +121,12 @@ packages:
     dependencies:
       '@hapi/hoek': 8.5.1
     dev: false
+
+  /@types/amqplib@0.10.1:
+    resolution: {integrity: sha512-j6ANKT79ncUDnAs/+9r9eDujxbeJoTjoVu33gHHcaPfmLQaMhvfbH2GqSe8KUM444epAp1Vl3peVOQfZk3UIqA==}
+    dependencies:
+      '@types/node': 20.4.7
+    dev: true
 
   /@types/bcryptjs@2.4.2:
     resolution: {integrity: sha512-LiMQ6EOPob/4yUL66SZzu6Yh77cbzJFYll+ZfaPiPPFswtIlA/Fs1MzdKYA7JApHU49zQTbJGX3PDmCpIdDBRQ==}
