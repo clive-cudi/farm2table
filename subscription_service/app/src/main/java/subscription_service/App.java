@@ -3,6 +3,7 @@
  */
 package subscription_service;
 
+import com.mongodb.client.MongoDatabase;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.Connection;
@@ -36,7 +37,17 @@ public class App {
             });
 
             channel.basicConsume(QUEUE_NAME, true, deliverCallback, consumerTag -> { });
+
+            // mongo connection
+            String mongoConnectionString = "mongodb+srv://clivemaina:2UDbB1rcTSBAvuts@farm2tablemain.wrm5d5e.mongodb.net/farm2tableDB?retryWrites=true&w=majority";
+            Mongo mongoDB = new Mongo(mongoConnectionString);
+            
+
+            MongoDatabase database = mongoDB.init();
+
+
         } catch (Exception e) {
+            System.out.println("[ERROR]");
             System.out.println(e);
         }
     }
