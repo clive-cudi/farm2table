@@ -4,10 +4,22 @@
 package subscription_service;
 
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Filters;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.DeliverCallback;
+
+import java.util.Iterator;
+
+import org.bson.Document;
+import org.bson.conversions.Bson;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.mongodb.client.FindIterable;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
 
 public class App {
     public final static String QUEUE_NAME = "messages";
@@ -30,21 +42,52 @@ public class App {
 
             System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
 
-            DeliverCallback deliverCallback = ((consumerTag, delivery) -> {
-                String message = new String(delivery.getBody(), "UTF-8");
-
-                System.out.println(" [x] Received '" + message + "'");
-            });
-
-            channel.basicConsume(QUEUE_NAME, true, deliverCallback, consumerTag -> { });
-
             // mongo connection
-            String mongoConnectionString = "mongodb+srv://clivemaina:2UDbB1rcTSBAvuts@farm2tablemain.wrm5d5e.mongodb.net/farm2tableDB?retryWrites=true&w=majority";
+            String mongoConnectionString = "mongodb://localhost:27017";
             Mongo mongoDB = new Mongo(mongoConnectionString);
             
 
             MongoDatabase database = mongoDB.init();
 
+
+            DeliverCallback deliverCallback = ((consumerTag, delivery) -> {
+                String message = new String(delivery.getBody(), "UTF-8");
+
+                Gson gson = new Gson();
+
+                JsonObject subscriptionAlertMessageJsonObject = gson.fromJson(message, JsonObject.class);
+
+                // fetch all subscriptions matching the category and quantity scope
+                MongoCollection<Document> collection = database.getCollection("surplus_subs");
+                String subscriptionCategory = subscriptionAlertMessageJsonObject.get("category").getAsString();
+                double subscriptionQuantity = subscriptionAlertMessageJsonObject.get("quantity").getAsDouble();
+
+                System.out.println(subscriptionCategory);
+
+                // search query
+                Bson categoryFilter = Filters.eq("category", subscriptionCategory);
+                Bson quantityRangeFilter = Filters.and(Filters.lt("q_range.from", subscriptionQuantity), Filters.gt("q_range.to", subscriptionQuantity));
+                Bson subscriptionSearchQuery = Filters.and(categoryFilter, quantityRangeFilter);
+                FindIterable<Document> cursor = collection.find(subscriptionSearchQuery);
+
+                // write a program to normalize quantities
+                // e.g crates & kgs
+
+                System.out.println(cursor);
+                try (final MongoCursor<Document> cursorIterator = cursor.cursor()) {
+                    while (cursorIterator.hasNext()) {
+                        System.out.println(cursorIterator.next());
+                    }
+                }
+
+                System.out.println(subscriptionAlertMessageJsonObject.get("spid").getAsString());
+
+                
+
+                System.out.println(" [x] Received '" + message + "'");
+            });
+
+            channel.basicConsume(QUEUE_NAME, true, deliverCallback, consumerTag -> { });
 
         } catch (Exception e) {
             System.out.println("[ERROR]");

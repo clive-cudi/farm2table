@@ -17,17 +17,20 @@ public class Mongo {
     }
 
     public MongoDatabase init() throws MongoException {
-        ServerApi serverApi = ServerApi.builder()
-            .version(ServerApiVersion.V1)
-            .build();
-        MongoClientSettings settings = MongoClientSettings.builder()
-            .applyConnectionString(new ConnectionString(this.connectionString))
-            .serverApi(serverApi)
-            .build();
+        // ServerApi serverApi = ServerApi.builder()
+        //     .version(ServerApiVersion.V1)
+        //     .build();
+        // MongoClientSettings settings = MongoClientSettings.builder()
+        //     .applyConnectionString(new ConnectionString(this.connectionString))
+        //     .serverApi(serverApi)
+        //     .build();
 
-        MongoClient mongoClient = MongoClients.create(settings);
+        MongoClient mongoClient = MongoClients.create(this.connectionString);
 
-        this.mongoDatabase = mongoClient.getDatabase("farm2tablemain");
+        this.mongoDatabase = mongoClient.getDatabase("farm2tableDB");
+        
+
+        // mongoClient.listDatabaseNames().forEach(System.out::println);
 
         return this.mongoDatabase;
     }

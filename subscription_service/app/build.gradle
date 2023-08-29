@@ -25,6 +25,7 @@ dependencies {
 
     // This dependency is used by the application.
     implementation 'com.google.guava:guava:31.1-jre'
+    
     implementation 'com.github.AfricasTalkingLtd.africastalking-java:core:3.4.9'
 
     implementation 'com.rabbitmq:amqp-client:5.18.0'
@@ -33,6 +34,8 @@ dependencies {
     implementation 'org.mongodb:mongodb-driver-sync:4.3.4'
 
     implementation 'io.github.cdimascio:dotenv-java:3.0.0'
+
+    // implementation 'org.json:json:20201115'
 }
 
 application {
