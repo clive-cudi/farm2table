@@ -10,7 +10,10 @@ import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.DeliverCallback;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
+import java.util.List;
 
 import org.bson.Document;
 import org.bson.conversions.Bson;
@@ -53,38 +56,52 @@ public class App {
             DeliverCallback deliverCallback = ((consumerTag, delivery) -> {
                 String message = new String(delivery.getBody(), "UTF-8");
 
+                System.out.println(" [x] Received '" + message + "'");
+
                 Gson gson = new Gson();
 
                 JsonObject subscriptionAlertMessageJsonObject = gson.fromJson(message, JsonObject.class);
 
                 // fetch all subscriptions matching the category and quantity scope
                 MongoCollection<Document> collection = database.getCollection("surplus_subs");
-                String subscriptionCategory = subscriptionAlertMessageJsonObject.get("category").getAsString();
-                double subscriptionQuantity = subscriptionAlertMessageJsonObject.get("quantity").getAsDouble();
+                String alertOwnerPhone = subscriptionAlertMessageJsonObject.get("owner").getAsString();
+                String alertProductName = subscriptionAlertMessageJsonObject.get("name").getAsString();
+                String alertDescription = subscriptionAlertMessageJsonObject.get("description").getAsString();
+                String alertCategory = subscriptionAlertMessageJsonObject.get("category").getAsString();
+                String alertQuantityVariant = subscriptionAlertMessageJsonObject.get("q_variant").getAsString();
+                double alertQuantity = subscriptionAlertMessageJsonObject.get("quantity").getAsDouble();
 
-                System.out.println(subscriptionCategory);
+                System.out.println(alertCategory);
 
                 // search query
-                Bson categoryFilter = Filters.eq("category", subscriptionCategory);
-                Bson quantityRangeFilter = Filters.and(Filters.lt("q_range.from", subscriptionQuantity), Filters.gt("q_range.to", subscriptionQuantity));
-                Bson subscriptionSearchQuery = Filters.and(categoryFilter, quantityRangeFilter);
+                Bson categoryFilter = Filters.eq("category", alertCategory);
+                Bson quantityVariantFilter = Filters.eq("q_variant", alertQuantityVariant);
+                Bson quantityRangeFilter = Filters.and(Filters.lt("q_range.from", alertQuantity), Filters.gt("q_range.to", alertQuantity));
+                Bson subscriptionSearchQuery = Filters.and(categoryFilter, quantityRangeFilter, quantityVariantFilter);
                 FindIterable<Document> cursor = collection.find(subscriptionSearchQuery);
 
+                // ADVANCED
                 // write a program to normalize quantities
                 // e.g crates & kgs
 
-                System.out.println(cursor);
+                List<String> subscriptionCandidateSources = new ArrayList<String>();
+                // System.out.println(cursor);
                 try (final MongoCursor<Document> cursorIterator = cursor.cursor()) {
                     while (cursorIterator.hasNext()) {
-                        System.out.println(cursorIterator.next());
+                        // System.out.println(cursorIterator.next().get("source"));
+                        subscriptionCandidateSources.add(cursorIterator.next().get("source").toString());
                     }
                 }
 
                 System.out.println(subscriptionAlertMessageJsonObject.get("spid").getAsString());
 
-                
+                SMSservice smsService = new SMSservice();
+                String alertSMSmessage = String.format("New Surplus Alert\nDetails are as follows:\n---\nDonor info:\nPhone: %s\n---\nProduct details:\nCategory: %s\nName: %s\nDescription: %s\nQuantity measure: %s\nQuantity: %s\n", alertOwnerPhone, alertCategory, alertProductName, alertDescription, alertQuantityVariant, alertQuantity);
 
-                System.out.println(" [x] Received '" + message + "'");
+
+                System.out.println(alertSMSmessage);
+                System.out.println(subscriptionCandidateSources.toString());
+                smsService.sendBulk(alertSMSmessage, subscriptionCandidateSources.toArray(new String[subscriptionCandidateSources.size()]));
             });
 
             channel.basicConsume(QUEUE_NAME, true, deliverCallback, consumerTag -> { });
@@ -94,4 +111,12 @@ public class App {
             System.out.println(e);
         }
     }
+
+    // public static String[] addToArray(String arr[], String x)
+    //   {
+    //     String[] newArray = new String[arr.length + 1];
+    //     // newArray.
+    //       // return the array
+    //       return arr;
+    //   }
 }
