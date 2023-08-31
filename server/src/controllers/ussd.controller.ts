@@ -82,18 +82,22 @@ ussd_menu.startState({
             return
         } else {
             ussd_menu.con(withNewLines(`Welcome to Farm2Table registration.~1. Choose account type~2. End`));
+            this.next = {
+                '1': 'chooseAccount',
+                '2': 'end'
+            }
             return
         }
     },
-    next: {
-        '1': 'chooseAccount',
-        '2': 'end'
-    }
+    // next: {
+    //     '1': 'chooseAccount',
+    //     '2': 'end'
+    // }
 });
 
 ussd_menu.state('chooseAccount', {
     run() {
-        ussd_menu.con(withNewLines(`Choose an account type.~1. Farmer (Donor)~2. Organization (Beneficiary)~3. Agent`));
+        ussd_menu.con(withNewLines(`Choose an account type.~1. Donor/Seller~2. Organization/Buyer~3. Agent`));
     },
     next: {
         '1': 'registerDonor',
@@ -268,7 +272,7 @@ ussd_menu.state('login', {
         const password = ussd_menu.val;
         const phone = ussd_menu.args.phoneNumber
 
-        console.log(password);
+        // console.log(password);
 
         const targetUser = await User.findOne({phone: phone});
 
@@ -287,11 +291,12 @@ ussd_menu.state('login', {
                         }
                         break;
                     case "org":
-                        ussd_menu.con(withNewLines('Welcome to Farm2Table.~Choose Action:~1. Subscribe to surplus alert~2. My Surplus Alert Subscriptions~3. Logout'));
+                        ussd_menu.con(withNewLines('Welcome to Farm2Table.~Choose Action:~1. Subscribe to surplus alert~2. My Surplus Alert Subscriptions~3. Jobs~4. Logout'));
                         this.next = {
                             '1': 'surplus.subscribe',
                             '2': 'surplus.subscriptions',
-                            '3': 'end'
+                            '3': 'surplus.jobs',
+                            '4': 'end'
                         }
                         break;
                     case "agent":
@@ -312,6 +317,64 @@ ussd_menu.state('login', {
         ussd_menu.con(`Invalid Credentials. Please Try Again`)
     },
 });
+
+ussd_menu.state('surplus.jobs', {
+    async run() {
+        ussd_menu.con(withNewLines(`1. Post Jobs~2. Posted offerings~3. Cancel`));
+
+        this.next = {
+            '1': 'surplus.jobs.post',
+            '2': 'end',
+            '3': 'end'
+        }
+    },
+});
+
+ussd_menu.state('surplus.jobs.post', {
+    async run() {
+        ussd_menu.con(withNewLines('Please enter the job type (e.g Farming, Herdsman):'))
+        this.next = {
+            '*[a-zA-Z]+': 'surplus.jobs.post.people'
+        }
+    },
+});
+
+ussd_menu.state('surplus.jobs.post.people', {
+    run() {
+        ussd_menu.con(withNewLines(`Enter the number of people needed`));
+
+        this.next = {
+            '*\\d+': 'surplus.jobs.post.people.number'
+        }
+    },
+});
+
+ussd_menu.state('surplus.jobs.post.people.number', {
+    run() {
+        ussd_menu.con(withNewLines('Enter Location:'));
+
+        this.next = {
+            '*[a-zA-Z]+': 'surplus.jobs.post.people.number.confirm',
+        }
+    },
+});
+
+ussd_menu.state('surplus.jobs.post.people.number.confirm', {
+    run() {
+        ussd_menu.con(withNewLines('Confirm Job posting.~An sms will be sent containing the details~1. Yes~2. No'));
+
+        this.next = {
+            '1': 'surplus.jobs.post.confirm.end',
+            '2': 'end'
+        }
+    },
+});
+
+ussd_menu.state('surplus.jobs.post.confirm.end', {
+    run() {
+        ussd_menu.end('Job Post created successfully. You will be notified of potential candidates')
+    },
+})
 
 const standard_units = {
     weight: "kg",
@@ -470,9 +533,12 @@ ussd_menu.state('surplus.create.category.q_variant.name.description', {
 
         ussd_menu.session.set('surplus.create', {...prevSessionState, q_name}).then(() => {
             ussd_menu.con(`Enter product description: `);
-            this.next = user.usertype == "org" ? {'*[a-zA-Z]+': `surplus.create.category.q_variant.name.description.confirm.org`} : {
-                '*[a-zA-Z]+': `surplus.create.category.q_variant.name.description.confirm`
-            }  
+            // this.next = user.usertype == "org" ? {'*[a-zA-Z]+': `surplus.create.category.q_variant.name.description.confirm.org`} : {
+            //     '*[a-zA-Z]+': `surplus.create.category.q_variant.name.description.confirm`
+            // }
+            this.next = {
+                '*[a-zA-Z]+': user.usertype === "donor" ? `surplus.create.category.q_variant.name.description.biddable` : `surplus.create.category.q_variant.name.description.confirm.org`
+            }
         })
     },
 });
@@ -505,12 +571,50 @@ ussd_menu.state('surplus.create.category.q_variant.name.org', {
     },
 });
 
+ussd_menu.state('surplus.create.category.q_variant.name.description.biddable', {
+    async run() {
+        // bids
+        const productDescription = ussd_menu.val;
+        const prevSessionState = await ussd_menu.session.get('surplus.create') as {[key: string]: string};
+        const user = await ussd_menu.session.get('user') as {usertype: string};
+
+        // ussd_menu.con(withNewLines('Do you want to put a price on potential~1. Yes~2. No'))
+        ussd_menu.session.set('surplus.create', {...prevSessionState, productDescription}).then(() => {
+            ussd_menu.con(withNewLines('Do you want to put a price on potential bids?~1. Yes~2. No'));
+            this.next = {
+                '1': 'surplus.create.category.q_variant.name.description.biddable.create',
+                '2': user.usertype == "org" ? 'surplus.create.category.q_variant.name.description.confirm.org' : `surplus.create.category.q_variant.name.description.confirm`
+            }
+        })
+    },
+})
+
+ussd_menu.state('surplus.create.category.q_variant.name.description.biddable.create', {
+    async run() {
+        const prevSessionState = await ussd_menu.session.get('surplus.create') as {[key: string]: string};
+        ussd_menu.session.set('surplus.create', {...prevSessionState, biddable: {status: true}}).then(() => {
+            ussd_menu.con(withNewLines('Enter the preffered bid amount. (Kshs)'));
+
+            this.next = {
+                '*\\d+': 'surplus.create.category.q_variant.name.description.confirm'
+            }
+        });
+    },
+});
+
 ussd_menu.state('surplus.create.category.q_variant.name.description.confirm', {
     async run() {
-        const productDescription = ussd_menu.val;
+        // const productDescription = ussd_menu.val;
         const productData = await ussd_menu.session.get('surplus.create') as {[key: string]: string};
+        const biddable = productData?.biddable as unknown as {status: boolean};
+        // check if the product is biddable
+        if (productData?.biddable) {
+            // biddable
+        }
+        const productDescription = biddable?.status === true ? productData.description :  ussd_menu.val;
         const phoneNumber = ussd_menu.args.phoneNumber;
         const spid = `sp_${uuid()}`;
+        const bidObject = biddable?.status === true ? {bids: []} : null
 
 
         console.log(productData);
@@ -521,14 +625,17 @@ ussd_menu.state('surplus.create.category.q_variant.name.description.confirm', {
             description: productDescription ?? "_",
             quantity: Number(productData.q_value ?? 0) ?? 0,
             name: productData.q_name ?? "_",
-            q_variant: productData.q_variant ?? "number"
+            q_variant: productData.q_variant ?? "number",
+            isBiddable: biddable?.status ?? false,
+            ...bidObject ?? null
         });
 
         newSurplusProduct.save().then(async (sp_) => {
             try {
+                console.log("SURPLUS SAVE___")
                 const keys = Object.keys(productData);
                 ussd_menu.end(withNewLines(`Successfully created surplus alert with the following details: ${keys.map((ky, i) => `~${ky}: ${productData[ky]}`)}`));
-                const surplusProduct = JSON.stringify(sp_);
+                const surplusProduct = JSON.stringify({...sp_?._doc, msg_domain: 'alert'});
                 const channel = await messagesChannel();
                 const QUEUE = "messages";
 
@@ -542,6 +649,7 @@ ussd_menu.state('surplus.create.category.q_variant.name.description.confirm', {
 
                 return;
             } catch (e) {
+                console.log(e);
                 throw e;
             }
         }).catch((sp_err) => {
@@ -568,11 +676,12 @@ ussd_menu.state('surplus.subscribe', {
 
 ussd_menu.state('surplus.create.category.q_variant.name.description.confirm.org', {
     async run() {
-        const productDescription = ussd_menu.val;
         const productData = await ussd_menu.session.get('surplus.create') as {[key: string]: string};
         const phoneNumber = ussd_menu.args.phoneNumber;
         const ssid = `ss_${uuid()}`;
         const q_ranges = productData.q_value.split('-').map((val) => Number(val)).sort((a, b) => a-b);
+        const biddable = productData?.biddable as unknown as {status: boolean};
+        const productDescription = biddable?.status === true ? productData.description :  ussd_menu.val;
 
         console.log(q_ranges);
 
