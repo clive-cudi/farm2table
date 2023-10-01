@@ -1,2 +1,2 @@
 # farm2table
-Connecting surplus food donors to beneficiary organizations.
+Connecting surplus (superfluity) food donors to beneficiary organizations.

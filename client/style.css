@@ -1,0 +1,11 @@
+.product-details{
+    align-self: center;
+    max-width: 50%;
+    border-radius: 8px;
+   
+
+    padding: 50px;
+
+/* Dashboard Card Shadow */
+    box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.10);
+}

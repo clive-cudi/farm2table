@@ -11,11 +11,14 @@ import { SurplusBid } from "./models/surplusBid";
 import { v4 as uuid } from "uuid";
 import { messagesChannel } from "./utils/amqp";
 import { Buffer } from "buffer";
+import cors from 'cors';
 
 const app = express();
 
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended: false}))
+
+app.use(cors());
 
 app.use(morgan("dev"))
 
@@ -134,6 +137,52 @@ app.post(`/placebid`, (req: Request, res: Response) => {
     return res.status(400).json({
       success: false,
       message: "Error saving bid",
+      payload: null
+    })
+  })
+});
+
+app.get('/bids', (req: Request, res: Response) => {
+  const { owner } = req.query;
+
+  if (!owner) {
+    return res.status(403).json({
+      success: false,
+      message: "Please provide the owner phone",
+      payload: null
+    })
+  }
+
+  // User.findOne({phone: owner, usertype: "donor"}).then((usr) => {
+  //   if (usr) {
+      
+  //     return res.status(200).json({
+  //       success: true,
+  //       message: "Successfully fetched bids",
+  //       payload: usr.bi
+  //     })
+  //   }
+  // })
+
+  SurplusProduct.find({owner: owner}).then((products) => {
+    if (products) {
+      return res.status(200).json({
+        success: true,
+        message: "Good",
+        payload: products.map((p) => p?.bids ?? [])
+      })
+    } else {
+      return res.status(404).json({
+        success: false,
+        message: "product not found",
+        payload: null
+      })
+    }
+  }).catch((err) => {
+    console.log(err);
+    return res.status(400).json({
+      success: false,
+      message: "error",
       payload: null
     })
   })

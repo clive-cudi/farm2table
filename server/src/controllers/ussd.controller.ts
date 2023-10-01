@@ -294,7 +294,7 @@ ussd_menu.state('login', {
                         ussd_menu.con(withNewLines('Welcome to Farm2Table.~Choose Action:~1. Subscribe to surplus alert~2. My Surplus Alert Subscriptions~3. Jobs~4. Logout'));
                         this.next = {
                             '1': 'surplus.subscribe',
-                            '2': 'surplus.subscriptions',
+                            '2': 'end',
                             '3': 'surplus.jobs',
                             '4': 'end'
                         }

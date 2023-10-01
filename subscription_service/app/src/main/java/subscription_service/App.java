@@ -106,7 +106,7 @@ public class App {
                     System.out.println(subscriptionAlertMessageJsonObject.get("spid").getAsString());
 
                     SMSservice smsService = new SMSservice();
-                    String alertSMSmessage = String.format("New Surplus Alert\nDetails are as follows:\n---\nDonor info:\nPhone: %s\n---\nProduct details:\nCategory: %s\nName: %s\nDescription: %s\nQuantity measure: %s\nQuantity: %s\n---\nIf Interested, you can place your bid here\n/placebid?spid=%s;enablebids=%s;phone=%s", alertOwnerPhone, alertCategory, alertProductName, alertDescription, alertQuantityVariant, alertQuantity, alertSpid, isBiddable, alertOwnerPhone);
+                    String alertSMSmessage = String.format("New Surplus Alert\nDetails are as follows:\n---\nDonor info:\nPhone: %s\n---\nProduct details:\nCategory: %s\nName: %s\nDescription: %s\nQuantity measure: %s\nQuantity: %s\n---\nIf Interested, you can place your bid here\n/placebid?spid=%s&enablebids=%s&phone=%s", alertOwnerPhone, alertCategory, alertProductName, alertDescription, alertQuantityVariant, alertQuantity, alertSpid, isBiddable, alertOwnerPhone);
 
 
                     System.out.println(alertSMSmessage);
@@ -139,7 +139,7 @@ public class App {
                     }
 
                     SMSservice smSservice = new SMSservice();
-                    String bidAlertSMS = String.format("A new bid has been placed for your product.\nFollow this link to view your pending bid requests. /bids?owner=%s;from=%s", availableBidSource.get(0), placeBidsource);
+                    String bidAlertSMS = String.format("A new bid has been placed for your product.\nFollow this link to view your pending bid requests. /bids?owner=%s&from=%s", availableBidSource.get(0), placeBidsource);
 
                     smSservice.sendBulk(bidAlertSMS, availableBidSource.toArray(new String[availableBidSource.size()]));
                     
