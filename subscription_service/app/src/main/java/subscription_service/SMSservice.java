@@ -7,10 +7,10 @@ import com.africastalking.sms.Recipient;
 import java.util.List;
 
 public class SMSservice {
-    private final String AT_USERNAME = "clive";
-    // private final String AT_USERNAME = "sandbox";
-    // private final String AT_API_KEY = "b7277d37dbed16f43a50b4c4349be2ec379b630db5fd4568cbe448c8677eb3dd";
-    private final String AT_API_KEY = "f95d1bf2c9020f0732c62e3dfb80bf21e5244bf0143246532bb9f10462267886";
+    private final String AT_USERNAME = "_";
+    // private final String AT_USERNAME = "_";
+    // private final String AT_API_KEY = "_";
+    private final String AT_API_KEY = "_";
     private SmsService sms;
 
     public void sendBulk(String message, String[] recipients) {
